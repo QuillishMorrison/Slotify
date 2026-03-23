@@ -2,31 +2,32 @@
 
 Русская версия: [README.md](README.md).
 
-`slotify` is a production-oriented, headless Python scheduling engine for time ranges, slots, bookings, blocks, and scheduling rules.
+`slotify` is a production-oriented scheduling engine with two layers:
 
-## Positioning
+- `slotify`: framework-agnostic core for time ranges, slots, bookings, blocks, and rules
+- `slotify_django`: optional Django companion app with models, admin, and services
 
-This package is intended for developers embedding scheduling behavior into:
+## Install
 
-- web backends
-- APIs and microservices
-- internal tools
-- CLI workflows
-- reusable open-source libraries
+Core only:
 
-It is framework-agnostic and storage-agnostic by design.
+```bash
+python -m pip install slotify-engine
+```
 
-## Features
+With Django support:
 
-- timezone-aware API with UTC-normalized calculations
-- source-of-truth event model plus derived slots
-- pluggable rules and strategies
-- optimistic concurrency hooks
-- strong typing and modern Python packaging
-- in-memory implementation for tests and prototyping
-- merge/split free-slot behavior out of the box
+```bash
+python -m pip install 'slotify-engine[django]'
+```
 
-## Example
+For local development:
+
+```bash
+python -m pip install -e .[dev]
+```
+
+## Core example
 
 ```python
 from datetime import UTC, datetime, timedelta
@@ -53,34 +54,44 @@ scheduler.add_block(
     "room-a",
     start=datetime(2026, 3, 23, 12, 0, tzinfo=UTC),
     end=datetime(2026, 3, 23, 13, 0, tzinfo=UTC),
-    metadata={"reason": "maintenance"},
 )
 
 available_slots = scheduler.get_slots("room-a")
 ```
 
-## Installation
+## Django companion app
 
-```bash
-python -m pip install slotify
+Add to `INSTALLED_APPS`:
+
+```python
+INSTALLED_APPS = [
+    ...,
+    "slotify_django",
+]
 ```
 
-For local development:
+Then run:
 
 ```bash
-python -m pip install -e .[dev]
+python manage.py migrate
 ```
 
-## Docs
+You get reusable models out of the box:
 
-See the `docs/` directory for:
+- `slotify_django.Schedule`
+- `slotify_django.AvailabilityRule`
+- `slotify_django.ScheduleEvent`
 
-- overview
-- quickstart
-- concepts
-- extensibility notes
-- roadmap
+And reusable services:
+
+```python
+from slotify_django.services import generate_slots
+
+slots = generate_slots(schedule, start=date(2026, 3, 23), end=date(2026, 3, 30))
+```
+
+The admin also includes basic schedule and event management.
 
 ## Status
 
-Version `0.1.0` is focused on a clean, reusable core for scheduling logic. It does not implement distributed locking or full RRULE recurrence yet.
+Version `0.1.0` is focused on a clean reusable core and a pragmatic Django starter layer. It does not implement distributed locking or full RRULE recurrence yet.

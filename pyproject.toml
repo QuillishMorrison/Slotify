@@ -1,11 +1,11 @@
-[build-system]
+﻿[build-system]
 requires = ["hatchling>=1.27.0"]
 build-backend = "hatchling.build"
 
 [project]
 name = "slotify-engine"
-version = "0.1.0"
-description = "Headless scheduling and time-slot engine for Python applications."
+version = "0.1.1"
+description = "Headless scheduling engine plus optional Django companion app."
 readme = { file = "README.en.md", content-type = "text/markdown" }
 requires-python = ">=3.11"
 license = "MIT"
@@ -15,6 +15,7 @@ authors = [
 keywords = [
   "booking",
   "calendar",
+  "django",
   "schedule",
   "scheduler",
   "slots",
@@ -22,6 +23,7 @@ keywords = [
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",
+  "Framework :: Django",
   "Intended Audience :: Developers",
   "License :: OSI Approved :: MIT License",
   "Operating System :: OS Independent",
@@ -35,8 +37,12 @@ classifiers = [
 dependencies = []
 
 [project.optional-dependencies]
+django = [
+  "django>=4.2",
+]
 dev = [
   "build>=1.2",
+  "django>=4.2",
   "pytest>=8.3",
   "twine>=5.1",
 ]
@@ -48,7 +54,7 @@ Repository = "https://github.com/QuillishMorrison/Slotify"
 Issues = "https://github.com/QuillishMorrison/Slotify/issues"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/slotify"]
+packages = ["src/slotify", "src/slotify_django"]
 
 [tool.hatch.build.targets.sdist]
 include = [
@@ -73,3 +79,4 @@ target-version = "py311"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "N", "SIM"]
+

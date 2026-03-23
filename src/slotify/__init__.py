@@ -12,7 +12,7 @@ from slotify.engine.commands import AddEventCommand, AddRuleCommand, BookCommand
 from slotify.engine.scheduler import Scheduler
 from slotify.storage.memory import InMemoryScheduleRepository
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 __all__ = [
     "AddEventCommand",
@@ -31,3 +31,4 @@ __all__ = [
     "TimeRange",
     "__version__",
 ]
+
