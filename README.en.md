@@ -1,6 +1,6 @@
-# slotify
+﻿# slotify
 
-Russian: see [README.md](README.md).
+Русская версия: [README.md](README.md).
 
 `slotify` is a production-oriented, headless Python scheduling engine for time ranges, slots, bookings, blocks, and scheduling rules.
 
@@ -24,6 +24,7 @@ It is framework-agnostic and storage-agnostic by design.
 - optimistic concurrency hooks
 - strong typing and modern Python packaging
 - in-memory implementation for tests and prototyping
+- merge/split free-slot behavior out of the box
 
 ## Example
 
@@ -58,6 +59,18 @@ scheduler.add_block(
 available_slots = scheduler.get_slots("room-a")
 ```
 
+## Installation
+
+```bash
+python -m pip install slotify
+```
+
+For local development:
+
+```bash
+python -m pip install -e .[dev]
+```
+
 ## Docs
 
 See the `docs/` directory for:
@@ -68,3 +81,6 @@ See the `docs/` directory for:
 - extensibility notes
 - roadmap
 
+## Status
+
+Version `0.1.0` is focused on a clean, reusable core for scheduling logic. It does not implement distributed locking or full RRULE recurrence yet.

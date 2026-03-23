@@ -1,6 +1,8 @@
-from slotify.domain import (
+﻿from slotify.domain import (
     Event,
     EventStatus,
+    NoRecurrence,
+    RecurrencePolicy,
     ScheduleDefinition,
     Slot,
     SlotStatus,
@@ -10,6 +12,8 @@ from slotify.engine.commands import AddEventCommand, AddRuleCommand, BookCommand
 from slotify.engine.scheduler import Scheduler
 from slotify.storage.memory import InMemoryScheduleRepository
 
+__version__ = "0.1.0"
+
 __all__ = [
     "AddEventCommand",
     "AddRuleCommand",
@@ -18,10 +22,12 @@ __all__ = [
     "Event",
     "EventStatus",
     "InMemoryScheduleRepository",
+    "NoRecurrence",
+    "RecurrencePolicy",
     "ScheduleDefinition",
     "Scheduler",
     "Slot",
     "SlotStatus",
     "TimeRange",
+    "__version__",
 ]
-

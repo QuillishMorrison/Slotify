@@ -1,4 +1,4 @@
-# slotify
+﻿# slotify
 
 English version: [README.en.md](README.en.md).
 
@@ -101,4 +101,4 @@ pytest
 
 ## Лицензия
 
-Рекомендуемая лицензия: MIT. См. [LICENSE](LICENSE).
+Рекомендуемая лицензия: MIT. См. [LICENSE](LICENSE).

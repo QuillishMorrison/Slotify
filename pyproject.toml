@@ -3,14 +3,14 @@ requires = ["hatchling>=1.27.0"]
 build-backend = "hatchling.build"
 
 [project]
-name = "slotify"
+name = "slotify-engine"
 version = "0.1.0"
 description = "Headless scheduling and time-slot engine for Python applications."
-readme = "README.md"
+readme = { file = "README.en.md", content-type = "text/markdown" }
 requires-python = ">=3.11"
-license = { text = "MIT" }
+license = "MIT"
 authors = [
-  { name = "OpenAI Codex" }
+  { name = "Slotify contributors" }
 ]
 keywords = [
   "booking",
@@ -29,23 +29,39 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Topic :: Office/Business :: Scheduling",
+  "Topic :: Software Development :: Libraries :: Python Modules",
   "Typing :: Typed",
 ]
 dependencies = []
 
 [project.optional-dependencies]
 dev = [
+  "build>=1.2",
   "pytest>=8.3",
+  "twine>=5.1",
 ]
 
 [project.urls]
-Homepage = "https://github.com/example/slotify"
-Documentation = "https://github.com/example/slotify/tree/main/docs"
-Repository = "https://github.com/example/slotify"
-Issues = "https://github.com/example/slotify/issues"
+Homepage = "https://github.com/QuillishMorrison/Slotify"
+Documentation = "https://github.com/QuillishMorrison/Slotify/tree/main/docs"
+Repository = "https://github.com/QuillishMorrison/Slotify"
+Issues = "https://github.com/QuillishMorrison/Slotify/issues"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/slotify"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src",
+  "/tests",
+  "/examples",
+  "/docs",
+  "/README.md",
+  "/README.en.md",
+  "/LICENSE",
+  "/CHANGELOG.md",
+  "/CONTRIBUTING.md",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -57,4 +73,3 @@ target-version = "py311"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "N", "SIM"]
-

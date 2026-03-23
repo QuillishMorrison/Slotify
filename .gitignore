@@ -1,4 +1,4 @@
-__pycache__/
+﻿__pycache__/
 *.py[cod]
 *.pyo
 *.pyd
@@ -15,6 +15,7 @@ ENV/
 
 build/
 dist/
+.tmp/
 *.egg-info/
 .eggs/
 
@@ -25,3 +26,5 @@ dist/
 Thumbs.db
 
 pytest-cache-files-*/
+
+local_demo_django/
